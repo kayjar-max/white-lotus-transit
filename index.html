@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>White Lotus Transit | Luxury Travel</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-full flex items-center justify-center text-white text-2xl font-bold">🌸</div>
+                <div>
+                    <h1 class="text-3xl font-serif tracking-tight text-gray-900">White Lotus</h1>
+                    <p class="text-xs text-gray-500 -mt-1">TRANSIT</p>
+                </div>
+            </div>
+            
+            <nav class="hidden md:flex items-center gap-8 text-gray-700">
+                <a href="#" onclick="navigateToSection('home')" class="hover:text-indigo-600 transition-colors">Home</a>
+                <a href="#" onclick="navigateToSection('destinations')" class="hover:text-indigo-600 transition-colors">Destinations</a>
+                <a href="#" onclick="navigateToSection('book')" class="hover:text-indigo-600 transition-colors">Book Now</a>
+                <a href="#" onclick="navigateToSection('testimonials')" class="hover:text-indigo-600 transition-colors">Testimonials</a>
+                <a href="#" onclick="showContactModal()" class="hover:text-indigo-600 transition-colors">Contact</a>
+            </nav>
+            
+            <button onclick="showContactModal()" 
+                    class="md:hidden bg-indigo-600 text-white px-5 py-2.5 rounded-xl text-sm font-medium flex items-center gap-2">
+                <i class="fas fa-phone"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://picsum.photos/id/1015/2000/1200')] bg-cover bg-center"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/60"></div>
+        
+        <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
+            <h2 class="text-white text-6xl md:text-7xl font-serif tracking-tighter leading-none mb-4">
+                Discover the World<br>with Elegance
+            </h2>
+            <p class="text-white/90 text-xl md:text-2xl mb-10 max-w-xl mx-auto">
+                White Lotus Transit — Where luxury meets unforgettable journeys
+            </p>
+            <button onclick="navigateToSection('book')" 
+                    class="bg-white text-gray-900 px-10 py-4 rounded-2xl text-lg font-semibold hover:bg-amber-100 transition-all active:scale-95">
+                Start Your Journey
+            </button>
+        </div>
+        
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white flex flex-col items-center">
+            <span class="text-sm tracking-widest mb-2">SCROLL TO EXPLORE</span>
+            <i class="fas fa-chevron-down animate-bounce"></i>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-5xl mx-auto px-6 text-center">
+            <h2 class="text-4xl font-serif mb-6 text-gray-900">Our Promise</h2>
+            <div class="prose mx-auto text-lg text-gray-600 leading-relaxed max-w-3xl">
+                <p class="mb-6">
+                    At White Lotus Transit, we provide <span class="font-semibold text-indigo-700">top-tier services</span> that exceed expectations. 
+                    Your comfort, safety, and satisfaction are our highest priorities.
+                </p>
+                <p>
+                    We put our customers' needs first in every decision we make — from curating exclusive destinations 
+                    to offering 24/7 personalized concierge support. Travel with confidence knowing that every detail 
+                    has been thoughtfully arranged for an extraordinary experience.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Destinations -->
+    <section id="destinations" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex justify-between items-end mb-12">
+                <div>
+                    <span class="text-indigo-600 font-medium tracking-widest text-sm">EXPLORE</span>
+                    <h2 class="text-4xl font-serif text-gray-900">Signature Destinations</h2>
+                </div>
+                <a href="#" onclick="navigateToSection('book')" class="text-indigo-600 hover:underline flex items-center gap-2">
+                    View all <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8" id="destination-cards">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section id="book" class="py-20 bg-gradient-to-br from-indigo-950 to-purple-950 text-white">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-serif mb-3">Book Your Dream Trip</h2>
+                <p class="text-indigo-200">Tell us where you want to go. We'll handle the rest.</p>
+            </div>
+            
+            <form id="booking-form" class="bg-white/10 backdrop-blur-xl p-10 rounded-3xl border border-white/20">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <label class="block text-sm mb-2 text-indigo-200">Destination</label>
+                        <select id="destination-select" class="w-full bg-white/10 border border-white/30 rounded-2xl px-6 py-4 focus:outline-none focus:border-white text-white">
+                            <option value="">Select a destination</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm mb-2 text-indigo-200">Travel Date</label>
+                        <input type="date" id="travel-date" class="w-full bg-white/10 border border-white/30 rounded-2xl px-6 py-4 focus:outline-none focus:border-white text-white">
+                    </div>
+                    <div>
+                        <label class="block text-sm mb-2 text-indigo-200">Number of Travelers</label>
+                        <input type="number" id="travelers" value="2" min="1" class="w-full bg-white/10 border border-white/30 rounded-2xl px-6 py-4 focus:outline-none focus:border-white text-white">
+                    </div>
+                    <div>
+                        <label class="block text-sm mb-2 text-indigo-200">Your Email</label>
+                        <input type="email" id="email" placeholder="you@example.com" 
+                               class="w-full bg-white/10 border border-white/30 rounded-2xl px-6 py-4 focus:outline-none focus:border-white text-white">
+                    </div>
+                </div>
+                
+                <button type="submit" 
+                        class="mt-10 w-full bg-white text-indigo-950 font-semibold py-5 rounded-2xl hover:bg-amber-100 transition-all text-lg">
+                    REQUEST BOOKING
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <span class="text-indigo-600 font-medium">VOICES OF OUR TRAVELERS</span>
+                <h2 class="text-4xl font-serif mt-2">What Our Guests Say</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8" id="testimonial-cards">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-10">
+            <div>
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-9 h-9 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-full flex items-center justify-center text-2xl">🌸</div>
+                    <span class="text-3xl font-serif">White Lotus Transit</span>
+                </div>
+                <p class="text-gray-400">Curating extraordinary journeys since 2018.</p>
+            </div>
+            
+            <div>
+                <h4 class="font-semibold mb-6">Quick Links</h4>
+                <div class="space-y-3 text-gray-400">
+                    <a href="#" onclick="navigateToSection('destinations')" class="block hover:text-white">Destinations</a>
+                    <a href="#" onclick="navigateToSection('book')" class="block hover:text-white">Book Now</a>
+                    <a href="#" onclick="navigateToSection('testimonials')" class="block hover:text-white">Testimonials</a>
+                </div>
+            </div>
+            
+            <div>
+                <h4 class="font-semibold mb-6">Contact Us</h4>
+                <div class="space-y-3 text-gray-400">
+                    <a href="mailto:kayode453@gmail.com" class="flex items-center gap-3 hover:text-white">
+                        <i class="fas fa-envelope"></i>
+                        <span>kayode453@gmail.com</span>
+                    </a>
+                    <a href="tel:+23348051060572" class="flex items-center gap-3 hover:text-white">
+                        <i class="fas fa-phone"></i>
+                        <span>+233 480 510 60572</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center text-gray-500 text-sm mt-16">
+            © 2026 White Lotus Transit. All Rights Reserved.
+        </div>
+    </footer>
+
+    <!-- Contact Modal -->
+    <div id="contact-modal" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-[100]">
+        <div class="bg-white rounded-3xl max-w-md w-full mx-4 p-10 relative">
+            <button onclick="hideContactModal()" class="absolute top-6 right-6 text-2xl text-gray-400 hover:text-gray-600">×</button>
+            
+            <div class="text-center mb-8">
+                <div class="w-16 h-16 mx-auto bg-indigo-100 rounded-2xl flex items-center justify-center text-4xl mb-6">🌸</div>
+                <h3 class="text-3xl font-serif text-gray-900">Get in Touch</h3>
+                <p class="text-gray-600 mt-2">We'd love to hear from you</p>
+            </div>
+            
+            <div class="space-y-8">
+                <div class="flex items-center gap-4 bg-gray-50 p-6 rounded-2xl">
+                    <div class="w-12 h-12 bg-indigo-100 rounded-2xl flex items-center justify-center text-2xl">✉️</div>
+                    <div>
+                        <p class="font-medium text-gray-900">Email Us</p>
+                        <a href="mailto:kayode453@gmail.com" class="text-indigo-600 hover:underline">kayode453@gmail.com</a>
+                    </div>
+                </div>
+                
+                <div class="flex items-center gap-4 bg-gray-50 p-6 rounded-2xl">
+                    <div class="w-12 h-12 bg-indigo-100 rounded-2xl flex items-center justify-center text-2xl">📞</div>
+                    <div>
+                        <p class="font-medium text-gray-900">Call Us</p>
+                        <a href="tel:+23348051060572" class="text-indigo-600 hover:underline">+233 480 510 60572</a>
+                    </div>
+                </div>
+            </div>
+            
+            <button onclick="hideContactModal()" 
+                    class="mt-10 w-full py-4 bg-gray-900 text-white rounded-2xl font-medium">
+                Close
+            </button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
